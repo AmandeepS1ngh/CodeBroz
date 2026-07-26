@@ -125,7 +125,7 @@ export default function WhyCodeBroz() {
                   i < comparisons.length - 1
                     ? "1px solid rgba(59, 130, 246, 0.08)"
                     : "none",
-                background: i % 2 === 0 ? "transparent" : "rgba(59, 130, 246, 0.02)",
+                background: i % 2 === 0 ? "rgba(59, 130, 246, 0)" : "rgba(59, 130, 246, 0.02)",
                 transition: "background 0.2s ease",
               }}
               whileHover={{ background: "rgba(59, 130, 246, 0.05)" }}
