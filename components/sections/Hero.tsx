@@ -206,11 +206,15 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* ─── RIGHT: Founders Photo Showcase ─── */}
+          {/* ─── RIGHT: Clean Founders Image Showcase (Increased Size & Smooth Slide-in) ─── */}
           <motion.div
-            initial={{ opacity: 0, x: 40, scale: 0.96 }}
-            animate={inView ? { opacity: 1, x: 0, scale: 1 } : {}}
-            transition={{ duration: 0.9, delay: 0.3, ease: "easeOut" }}
+            initial={{ opacity: 0, x: 160, filter: "blur(10px)" }}
+            animate={inView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+            transition={{
+              duration: 1.1,
+              delay: 0.25,
+              ease: [0.16, 1, 0.3, 1],
+            }}
             style={{
               position: "relative",
               display: "flex",
@@ -219,128 +223,39 @@ export default function Hero() {
               width: "100%",
             }}
           >
-            {/* Ambient Background Glow Ring */}
+            {/* Ambient Backstage Radial Blue Glow */}
             <div
               style={{
                 position: "absolute",
                 width: "90%",
                 height: "90%",
-                borderRadius: "32px",
-                background: "radial-gradient(circle at center, rgba(59,130,246,0.3) 0%, rgba(99,102,241,0.15) 50%, transparent 80%)",
-                filter: "blur(40px)",
+                borderRadius: "50%",
+                background:
+                  "radial-gradient(circle at center, rgba(59, 130, 246, 0.22) 0%, rgba(99, 102, 241, 0.08) 60%, transparent 80%)",
+                filter: "blur(60px)",
                 pointerEvents: "none",
+                zIndex: 0,
               }}
             />
 
-            {/* Founder Card Frame */}
-            <div
-              style={{
-                position: "relative",
-                width: "100%",
-                maxWidth: "480px",
-                borderRadius: "28px",
-                background: "rgba(11, 17, 32, 0.75)",
-                border: "1px solid rgba(59, 130, 246, 0.25)",
-                backdropFilter: "blur(20px)",
-                WebkitBackdropFilter: "blur(20px)",
-                boxShadow: "0 30px 80px rgba(0,0,0,0.8), 0 0 40px rgba(59, 130, 246, 0.15)",
-                padding: "16px",
-                overflow: "hidden",
+            {/* Large Clean Founders Cutout Image */}
+            <motion.img
+              src="/founders-transparent.png"
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).src = "/founders_pic.png";
               }}
-            >
-              {/* Photo Wrapper */}
-              <div
-                style={{
-                  position: "relative",
-                  width: "100%",
-                  borderRadius: "20px",
-                  overflow: "hidden",
-                  background: "linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, rgba(11, 17, 32, 0.95) 100%)",
-                }}
-              >
-                {/* Founders Image */}
-                <img
-                  src="/founders-transparent.png"
-                  onError={(e) => {
-                    // Fallback to founders.jpg if transparent png isn't loaded yet
-                    (e.currentTarget as HTMLImageElement).src = "/founders.jpg";
-                  }}
-                  alt="CodeBroz Founders"
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    display: "block",
-                    objectFit: "cover",
-                    filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.5))",
-                    maskImage: "linear-gradient(to bottom, black 80%, transparent 100%)",
-                    WebkitMaskImage: "linear-gradient(to bottom, black 80%, transparent 100%)",
-                  }}
-                />
-
-                {/* Top Badge */}
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "16px",
-                    left: "16px",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    padding: "8px 14px",
-                    borderRadius: "100px",
-                    background: "rgba(11, 17, 32, 0.85)",
-                    border: "1px solid rgba(59, 130, 246, 0.3)",
-                    backdropFilter: "blur(12px)",
-                  }}
-                >
-                  <Users size={14} color="#3B82F6" />
-                  <span style={{ fontSize: "12px", color: "#fff", fontWeight: "600" }}>
-                    Founders &amp; Engineering Leads
-                  </span>
-                </div>
-
-                {/* Bottom Overlay Label */}
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: "16px",
-                    left: "16px",
-                    right: "16px",
-                    padding: "14px 18px",
-                    borderRadius: "14px",
-                    background: "rgba(15, 23, 42, 0.85)",
-                    border: "1px solid rgba(59, 130, 246, 0.2)",
-                    backdropFilter: "blur(16px)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <div>
-                    <div style={{ fontSize: "14px", fontWeight: "700", color: "#fff" }}>
-                      Amandeep &amp; Co-Founder
-                    </div>
-                    <div style={{ fontSize: "12px", color: "#60A5FA", fontWeight: "500" }}>
-                      CodeBroz Engineering Leadership
-                    </div>
-                  </div>
-                  <div
-                    style={{
-                      width: "32px",
-                      height: "32px",
-                      borderRadius: "8px",
-                      background: "rgba(59, 130, 246, 0.15)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "#3B82F6",
-                    }}
-                  >
-                    <Award size={18} />
-                  </div>
-                </div>
-              </div>
-            </div>
+              alt="CodeBroz Founders"
+              style={{
+                width: "100%",
+                maxWidth: "680px",
+                height: "auto",
+                display: "block",
+                objectFit: "contain",
+                position: "relative",
+                zIndex: 1,
+                filter: "drop-shadow(0 20px 40px rgba(0, 0, 0, 0.7))",
+              }}
+            />
           </motion.div>
         </div>
       </div>
@@ -348,14 +263,14 @@ export default function Hero() {
       <style>{`
         .hero-split-grid {
           display: grid;
-          grid-template-columns: 1.15fr 0.85fr;
-          gap: 60px;
+          grid-template-columns: 1fr 1fr;
+          gap: 40px;
           align-items: center;
         }
         @media (max-width: 960px) {
           .hero-split-grid {
             grid-template-columns: 1fr !important;
-            gap: 56px !important;
+            gap: 48px !important;
             text-align: center;
           }
           .hero-split-grid > div:first-child {
