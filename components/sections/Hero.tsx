@@ -6,8 +6,6 @@ import {
   ArrowRight,
   CheckCircle2,
   Sparkles,
-  Award,
-  Users,
 } from "lucide-react";
 
 const fadeUp: Variants = {
@@ -31,6 +29,12 @@ const trustBadges = [
   "Long-Term Support",
 ];
 
+const studioStats = [
+  { value: "50+", label: "Projects Delivered" },
+  { value: "< 50ms", label: "Global Edge Speed" },
+  { value: "99.99%", label: "System Reliability" },
+];
+
 export default function Hero() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
@@ -43,7 +47,7 @@ export default function Hero() {
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
-        paddingTop: "120px",
+        paddingTop: "130px",
         paddingBottom: "80px",
         position: "relative",
         overflow: "hidden",
@@ -55,7 +59,7 @@ export default function Hero() {
         style={{
           position: "absolute",
           inset: 0,
-          opacity: 0.45,
+          opacity: 0.4,
           pointerEvents: "none",
         }}
       />
@@ -64,24 +68,24 @@ export default function Hero() {
       <div
         style={{
           position: "absolute",
-          top: "15%",
+          top: "10%",
           left: "-5%",
-          width: "650px",
-          height: "650px",
+          width: "700px",
+          height: "700px",
           background:
-            "radial-gradient(ellipse, rgba(59, 130, 246, 0.15) 0%, transparent 70%)",
+            "radial-gradient(ellipse at center, rgba(59, 130, 246, 0.18) 0%, rgba(99, 102, 241, 0.08) 50%, transparent 70%)",
           pointerEvents: "none",
         }}
       />
       <div
         style={{
           position: "absolute",
-          top: "35%",
+          top: "20%",
           right: "-5%",
-          width: "550px",
-          height: "550px",
+          width: "750px",
+          height: "750px",
           background:
-            "radial-gradient(ellipse, rgba(99, 102, 241, 0.12) 0%, transparent 70%)",
+            "radial-gradient(ellipse at center, rgba(37, 99, 235, 0.15) 0%, rgba(6, 182, 212, 0.08) 50%, transparent 70%)",
           pointerEvents: "none",
         }}
       />
@@ -98,6 +102,7 @@ export default function Hero() {
               flexDirection: "column",
               alignItems: "flex-start",
               textAlign: "left",
+              zIndex: 2,
             }}
           >
             {/* Badge */}
@@ -112,9 +117,9 @@ export default function Hero() {
             <motion.h1
               variants={fadeUp}
               style={{
-                fontSize: "clamp(38px, 4.8vw, 68px)",
+                fontSize: "clamp(40px, 5.2vw, 72px)",
                 fontWeight: "800",
-                lineHeight: "1.08",
+                lineHeight: "1.06",
                 letterSpacing: "-0.03em",
                 color: "#fff",
                 marginBottom: "24px",
@@ -185,6 +190,7 @@ export default function Hero() {
                 display: "flex",
                 flexWrap: "wrap",
                 gap: "14px 24px",
+                marginBottom: "32px",
               }}
             >
               {trustBadges.map((badge) => (
@@ -204,15 +210,47 @@ export default function Hero() {
                 </div>
               ))}
             </motion.div>
+
+            {/* Studio Key Highlights Pills */}
+            <motion.div
+              variants={fadeUp}
+              style={{
+                display: "flex",
+                gap: "28px",
+                flexWrap: "wrap",
+                paddingTop: "20px",
+                borderTop: "1px solid rgba(59, 130, 246, 0.12)",
+                width: "100%",
+                maxWidth: "580px",
+              }}
+            >
+              {studioStats.map((stat) => (
+                <div key={stat.label} style={{ display: "flex", flexDirection: "column" }}>
+                  <span
+                    style={{
+                      fontSize: "18px",
+                      fontWeight: "800",
+                      color: "#3B82F6",
+                      letterSpacing: "-0.02em",
+                    }}
+                  >
+                    {stat.value}
+                  </span>
+                  <span style={{ fontSize: "12px", color: "#64748B", fontWeight: "500" }}>
+                    {stat.label}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
           </motion.div>
 
-          {/* ─── RIGHT: Clean Founders Image Showcase (Increased Size & Smooth Slide-in) ─── */}
+          {/* ─── RIGHT: Seamless Clean Founders Cutout ─── */}
           <motion.div
-            initial={{ opacity: 0, x: 160, filter: "blur(10px)" }}
+            initial={{ opacity: 0, x: 100, filter: "blur(10px)" }}
             animate={inView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
             transition={{
               duration: 1.1,
-              delay: 0.25,
+              delay: 0.2,
               ease: [0.16, 1, 0.3, 1],
             }}
             style={{
@@ -223,39 +261,51 @@ export default function Hero() {
               width: "100%",
             }}
           >
-            {/* Ambient Backstage Radial Blue Glow */}
+            {/* Deep Atmospheric Backlight Glow */}
             <div
               style={{
                 position: "absolute",
-                width: "90%",
-                height: "90%",
+                width: "100%",
+                height: "100%",
                 borderRadius: "50%",
                 background:
-                  "radial-gradient(circle at center, rgba(59, 130, 246, 0.22) 0%, rgba(99, 102, 241, 0.08) 60%, transparent 80%)",
-                filter: "blur(60px)",
+                  "radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.22) 0%, rgba(99, 102, 241, 0.08) 50%, transparent 75%)",
+                filter: "blur(40px)",
                 pointerEvents: "none",
                 zIndex: 0,
               }}
             />
 
-            {/* Large Clean Founders Cutout Image */}
-            <motion.img
-              src="/founders-transparent.png"
-              onError={(e) => {
-                (e.currentTarget as HTMLImageElement).src = "/founders_pic.png";
-              }}
-              alt="CodeBroz Founders"
+            {/* Zoomed & Clean Cutout Image without dark square box masks */}
+            <motion.div
               style={{
-                width: "100%",
-                maxWidth: "680px",
-                height: "auto",
-                display: "block",
-                objectFit: "contain",
                 position: "relative",
                 zIndex: 1,
-                filter: "drop-shadow(0 20px 40px rgba(0, 0, 0, 0.7))",
+                width: "100%",
+                maxWidth: "760px",
+                transform: "scale(1.12)",
+                transformOrigin: "center right",
               }}
-            />
+            >
+              <motion.img
+                src="/founders-transparent.png"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src = "/founders.jpg";
+                }}
+                alt="CodeBroz Founders"
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  display: "block",
+                  objectFit: "contain",
+                  filter: "drop-shadow(0 20px 40px rgba(0, 0, 0, 0.7))",
+                  maskImage:
+                    "linear-gradient(to bottom, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%)",
+                  WebkitMaskImage:
+                    "linear-gradient(to bottom, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%)",
+                }}
+              />
+            </motion.div>
           </motion.div>
         </div>
       </div>
@@ -263,7 +313,7 @@ export default function Hero() {
       <style>{`
         .hero-split-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr 1.15fr;
           gap: 40px;
           align-items: center;
         }
@@ -276,6 +326,9 @@ export default function Hero() {
           .hero-split-grid > div:first-child {
             align-items: center !important;
             text-align: center !important;
+          }
+          .hero-split-grid > div:last-child > div {
+            transform: scale(1) !important;
           }
         }
       `}</style>
